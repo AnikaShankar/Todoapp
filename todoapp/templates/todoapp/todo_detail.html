@@ -1,0 +1,10 @@
+{% extends 'todoapp/base.html' %}
+{% block content %}
+<div>
+<div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
+<a class="btn btn-default" href="{% url 'todo_edit' pk=todo.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+<a class="btn btn-default" href="{% url 'todo_remove' pk=todo.pk %}"><span class="glyphicon glyphicon-remove"></span></a><div>&nbsp;</div>
+<p style="padding-left:5px;"><b>Todo:</b> {{ todo.Todo }}</p>
+<p style="padding-left:5px;"><b>Status:</b> {{ todo.Status }}</p>
+</div>
+{% endblock %}

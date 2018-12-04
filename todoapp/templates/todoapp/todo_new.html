@@ -1,0 +1,10 @@
+{% extends 'todoapp/base.html' %}
+{% block content %}
+    <h2 style="padding-left:5px;">Todo</h2>
+    <form method="POST" class="post-form">{% csrf_token %}
+        <!-- {{ form.as_p }} -->
+        <p style="padding-left:15px;"><label for="id_Todo">Todo:</label> 
+		<input type="text" name="Todo" maxlength="600" required="" id="id_Todo"></p>
+        <p style="padding-left:10px;"><button type="submit" class="save btn btn-default">Save</button></p>
+    </form>
+{% endblock %}

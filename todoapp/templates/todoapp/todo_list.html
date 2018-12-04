@@ -1,0 +1,31 @@
+{% extends 'todoapp/base.html' %}
+{% block content %}
+<div class="page-header" style="">
+    <form method="POST" class="post-form">{% csrf_token %}
+    	<input class="form-control" style="width:68%; height:45px;" type="text" name="Todo" maxlength="600" required="" id="id_Todo" placeholder="New Todo"></p>
+		<p style="padding-left:10px; display:none;"><button type="submit" class="save btn btn-default">Save</button></p>
+    </form>
+    <a class="btn btn-warning" href="{% url 'todo_clearcompleted' %}">Clear Completed</a>
+    <a class="btn btn-danger" href="{% url 'todo_clearall' %}">Clear All</a>
+</div>
+{% if todos|length == 0 %}
+<img width="950px;" src="https://img.elo7.com.br/product/original/195759A/painel-1-50x1-o-poderoso-chefinho-painel.jpg">
+{% endif %}
+{% for item in todos %}
+<div>
+	{% if item.Status == 'Open' %}
+	<p class="lead">
+		<a class="btn btn-default" href="{% url 'todo_statusupdate' pk=item.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+		{{ item.Todo }}&emsp;
+		<a class="btn btn-default" href="{% url 'todo_remove' pk=item.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+	</p>
+	{% else %}
+	<p class="lead">
+		<a class="btn btn-default" href="{% url 'todo_statusupdate' pk=item.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+		<s>{{ item.Todo }}</s>&emsp;
+		<a class="btn btn-default" href="{% url 'todo_remove' pk=item.pk %}"><span class="glyphicon glyphicon-trash"></span></a>
+	</p>
+	{% endif %}
+</div>
+{% endfor %}
+{% endblock %}
